@@ -206,3 +206,41 @@ console.log(numbers4) // [2, 6, 10, 14, 18, 22, 26];
 // Now let's do with map() method
 const numbers5 = oddNumbers.map((num) => num * 2);
 console.log(numbers5);
+function getBooks() {
+  return data;
+}
+const books = getBooks();
+ const titles = books.map((book) => book.title);
+ console.log(titles);
+ const author = books.map((book) => ({
+  name: book.author,
+ }));
+  console.log(author);
+// Filter Method used to order filter out array based on a condition and return a new array
+const Booksid = books.filter((book) => book.id === 1);
+console.log(Booksid);
+
+const adventuresbooks = books.filter((book) => book.genres.includes('adventure')).map((book) => book.title);
+console.log(adventuresbooks);
+
+// Reduce Method used to reduce an array to a single value
+const allpages = books.reduce((acc, book)=> acc + book.pages, 0);
+console.log(allpages);
+
+// sort method to sort an array
+const y = [3,2,1,5,4,7,6,9,8];
+const sorted_y = y.sort((a,b) => a - b);
+console.log(sorted_y);
+console.log(y);
+
+const sort_books = books.slice().sort((a,b) => a.pages - b.pages).map((book) => book.pages);;
+console.log(sort_books);
+
+// Don't Mutate the Original Array
+const newbook = {
+  id:6,
+  title:"The Wonderfools",
+  publicationDate:"2026-05-01",
+};
+ const updatedData = [...data, newbook];
+console.log(updatedData); 
