@@ -255,3 +255,82 @@ async function getTodos(){
   console.log(data1);
 }
 getTodos();
+
+// Let's deep dive in Promises further more
+// creating a promise we mostly use new Promise() like a constructor
+let checkElectricity = new Promise((resolve, reject) => {
+  let isPowerOn = true;
+  if (isPowerOn){
+    resolve('Bijli aa gayi hai, AC chala do!')
+  }else{
+    reject('Wapda zindabad, UPS par guzara karo.')
+  }
+});
+
+//Consuming the promise
+checkElectricity.then((message) => console.log(message)).catch((error) => console.log(error));
+
+// // How to use promises in real cases
+// let orderPizza = new Promise((resolve, reject) => {
+//   let stockAvailable = true;
+//   setTimeout(() =>{
+//     if (stockAvailable){
+//       resolve('Pizza taiyar hai, delivery boy nikal gaya!')
+//     } else {
+//       reject('Afsos, pizza khatam ho gaya hai.')
+//     }
+//   }, 2000)
+// })
+
+// let processPayment = new Promise((resolve, reject) => {
+//   resolve("Payment kamyabi se kat gayi hai!")
+// });
+
+// // Consuming the promise
+// orderPizza.then((message)=> {
+//   console.log(message);
+//   return processPayment;
+// }).then((secondPromise) => {
+//   console.log(secondPromise);
+// }).catch((error) => console.log(error))
+
+// // another way
+// Promise.all([orderPizza, processPayment]).then((messages) => {
+//   console.log(messages[0]);
+//   console.log(messages[1]);
+// }).catch((error) => console.log(error));
+
+// How to use promises in real cases
+let orderPizza = new Promise((resolve, reject) => {
+  let stockAvailable = true;
+  setTimeout(() =>{
+    if (stockAvailable){
+      resolve('Pizza taiyar hai, delivery boy nikal gaya!')
+    } else {
+      reject('Afsos, pizza khatam ho gaya hai.')
+    }
+  }, 2000)
+})
+
+let processPayment = new Promise((resolve, reject) => {
+  reject("Error: Account main paise khatam hain!")
+});
+
+// another way
+Promise.all([orderPizza, processPayment]).then((messages) => {
+  console.log(messages[0]);
+  console.log(messages[1]);
+}).catch((error) => console.log(error));
+
+// Using async and await
+async function fetchUserData(){
+  try{
+    let res = await fetch('https://jsonplaceholder.typicode.com/users');
+    let data = await res.json();
+    console.log(data);
+  }catch(error) {
+    console.error('Error fetching user data:', error);
+  }
+}
+
+fetchUserData()
