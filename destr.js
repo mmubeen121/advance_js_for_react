@@ -243,4 +243,15 @@ const newbook = {
   publicationDate:"2026-05-01",
 };
  const updatedData = [...data, newbook];
-console.log(updatedData); 
+console.log(updatedData);
+// Asynchronous JS ; Using Promises and Async/Await
+// Method 01
+fetch('https://jsonplaceholder.typicode.com/todos').then((res)=> res.json()).then((data2)=> console.log(data2));
+
+// Method 02
+async function getTodos(){
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+  const data1 = await res.json();
+  console.log(data1);
+}
+getTodos();
